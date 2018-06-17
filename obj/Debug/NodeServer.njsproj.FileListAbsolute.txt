@@ -1,0 +1,2 @@
+D:\TSL\Encuestas 2.0\Node\NodeServer\NodeServer\obj\Debug\NodeServer.njsprojResolveAssemblyReference.cache
+D:\TSL\Encuestas 2.0\Node\NodeServer\NodeServer\bin\Microsoft.NodejsTools.WebRole.dll
