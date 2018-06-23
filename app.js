@@ -38,10 +38,18 @@ io.on("connection", function (socket) {
         "WHERE FORM_CODE =" + queryVals;
 
         //Log of transaction in a clear way
-        console.log('-----------------------------------------');
-        console.log('id: ', transactionID)
-        console.log('getForm: ', query);
-        console.log('-----------------------------------------');
+        console.log('-----------------getForm-----------------');
+        console.log('id: ', transactionID);
+        //Get current date and format it in YYYY-MM-DD HH:mm:SS
+        var currentdate = new Date(); 
+        var datetime = currentdate.getFullYear() + "-"
+                        + (currentdate.getMonth()+1)  + "-"
+                        + currentdate.getDate() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds() + "."
+                        + currentdate.getMilliseconds();
+        console.log('strated date:', datetime);
         
         transactioner(query, transactionID);
     });
@@ -61,10 +69,18 @@ io.on("connection", function (socket) {
             }
         }        
         
-        console.log('-----------------------------------------');
+        console.log('------------insertFilledForms-----------');
         console.log('id: ', transactionID)
-        console.log('insertFilledForms: ', query);
-        console.log('-----------------------------------------')
+        //Get current date and format it in YYYY-MM-DD HH:mm:SS
+        var currentdate = new Date(); 
+        var datetime = currentdate.getFullYear() + "-"
+                        + (currentdate.getMonth()+1)  + "-"
+                        + currentdate.getDate() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds() + "."
+                        + currentdate.getMilliseconds();
+        console.log('strated date:', datetime);
         
         transactioner(query, transactionID);
     });
@@ -85,10 +101,19 @@ function transactioner(query, transactionID) {
             //the results with the TransactionID.
             //(TransactionID is generated randomly from
             //the client side when the transaction is requested)
-            console.log("DONE ID: " + transactionID)
-            io.sockets.emit(transactionID, {"success": true, "data": recordset});
+            var currentdate = new Date(); 
+            var datetime = currentdate.getFullYear() + "-"
+                            + (currentdate.getMonth()+1)  + "-"
+                            + currentdate.getDate() + " "
+                            + currentdate.getHours() + ":"
+                            + currentdate.getMinutes() + ":"
+                            + currentdate.getSeconds() + "."
+                            + currentdate.getMilliseconds();
+            console.log('finished date:', datetime);
             //Log the transaction result
             console.log("SUCCESFULL TRANSACTION");
+            console.log('-----------------------------------------')
+            io.sockets.emit(transactionID, {"success": true, "data": recordset});            
             //And close the SQL connection once the transaction is over
             conn.close();
         })
