@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "tedious": "^2.2.4"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
