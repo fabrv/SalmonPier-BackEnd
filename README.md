@@ -25,6 +25,8 @@ node app.js
 ```
 
 The app works with its frontend companion ["SalmonPier"](https://github.com/fabrv/SalmonPier) and a working database.
+This is the database structure I use on my local enviroment:
+![Database Structure](https://github.com/fabrv/SalmonPier-BackEnd/blob/master/dbStructureDiagram.png)
 
 ## Built With
 * [NodeJS](https://nodejs.org/en/download/)
