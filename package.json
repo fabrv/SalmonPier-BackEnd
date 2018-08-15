@@ -14,7 +14,7 @@
     "tedious": "^2.2.4"
   },
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js test"
   },
   "devDependencies": {}
 }

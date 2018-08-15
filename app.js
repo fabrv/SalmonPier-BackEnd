@@ -16,6 +16,14 @@ var connected
 
 http.listen(8080, function () {
     console.log("NODE PORT ON *:8080");
+
+    process.argv.forEach(function (val, index, array) {
+        if (val == "test"){
+            console.log("Test result: Dependencies and server running.")
+            //For future versions of the test (when the server is no longer local) it should also test the server connection
+            process.exit();
+        }
+    });
 });
 
 //User IDs
