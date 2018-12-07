@@ -55,7 +55,7 @@ class App{
       res.status(200).json(result.data)
     })
 
-    router.post('/filledForms/:forms', async (req: express.Request, res: express.Response) => {
+    router.post('/forms/:forms', async (req: express.Request, res: express.Response) => {
       console.log(chalk.cyan(`---FILLED_FORM inserts ${req.params.forms.length} requested---`))
       const val = req.params.forms
       let query = "DECLARE @FILLED_ID INT ";

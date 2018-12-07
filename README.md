@@ -24,13 +24,18 @@ Alright!, now give the app a run with the command
 node app.js
 ```
 
+### Usage
+URL | GET | POST
+--- | --- | ----
+http://*address*/forms/ | **Lists** all question with the form code passed as parameter, route `forms/:number`. | **Adds** elements to collection forms. Must pass JSON object through paramter as string, route `forms/:object`.
+
 The app works with its frontend companion ["SalmonPier"](https://github.com/fabrv/SalmonPier) and a working database.
 This is the database structure I use on my local enviroment:
 ![Database Structure](https://github.com/fabrv/SalmonPier-BackEnd/blob/master/dbStructureDiagram.png)
 
 ## Built With
 * [NodeJS](https://nodejs.org/en/download/)
-* [Socket.io](https://socket.io/)
+* [Express](https://expressjs.com/)
 
 ## Contributing
 

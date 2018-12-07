@@ -1,8 +1,8 @@
 {
-  "name": "NodeServer",
-  "version": "0.0.0",
-  "description": "NodeServer",
-  "main": "app.js",
+  "name": "SalmonPier-Backend",
+  "version": "1.0.0",
+  "description": "Node backend for SalmonPier Survey App",
+  "main": "src/app.ts",
   "author": {
     "name": "Fabrizzio",
     "email": "frivera@nevicad.com"
@@ -14,14 +14,12 @@
     "chalk": "^2.4.1",
     "cors": "^2.8.5",
     "express": "^4.16.3",
-    "mssql": "^4.1.0",
-    "socket.io": "^2.1.1",
-    "tedious": "^2.2.4",
+    "mssql": "^4.1.0",    
     "ts-node": "^7.0.1",
     "typescript": "^3.2.1"
   },
   "scripts": {
-    "test": "node app.js test",
+    "test": "echo 'no tests' && exit 0",
     "start": "ts-node src/index",
     "build:live": "nodemon --exec ts-node src/index.ts"
   },
