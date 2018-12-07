@@ -40,8 +40,8 @@ class App{
         LEFT JOIN OPTIONS ON QUESTION.QUESTION_ID = OPTIONS.QUESTION_ID 
         WHERE FORM_CODE = ${req.params.form}`
 
-      let currentdate = new Date(); 
-      let datetime = currentdate.getFullYear() + "-"
+      const currentdate = new Date(); 
+      const datetime = currentdate.getFullYear() + "-"
                   + (currentdate.getMonth()+1)  + "-"
                   + currentdate.getDate() + " "
                   + currentdate.getHours() + ":"
@@ -51,7 +51,37 @@ class App{
 
       console.log(chalk.cyan('strated date:'), datetime)
 
-      let result = await this.transcationer(query)
+      const result = await this.transcationer(query)
+      res.status(200).json(result.data)
+    })
+
+    router.post('/filledForms/:forms', async (req: express.Request, res: express.Response) => {
+      console.log(chalk.cyan(`---FILLED_FORM inserts ${req.params.forms.length} requested---`))
+      const val = req.params.forms
+      let query = "DECLARE @FILLED_ID INT ";
+      for (let f = 0; f < val.length; f++){
+        query = query + "INSERT INTO FILLED_FORM (FORM_CODE, DATE_FILLED) " +
+        "VALUES ("+ val[f].CODE +", '"+ val[f].FINISHED_DATE +"') " +            
+        "SET @FILLED_ID = (SELECT TOP 1 FILLED_ID FROM FILLED_FORM ORDER BY DATE_FILLED) "
+
+        for (let i = 0; i < val[f].QUESTIONS.length; i++){
+          query = query + "INSERT INTO ANSWER (VALUE, QUESTION_ID, FILLED_ID) " +
+          "VALUES ('" + val[f].QUESTIONS[i].ANSWER + "', " + val[f].QUESTIONS[i].QUESTION_ID + ", @FILLED_ID) "
+        }
+      }
+
+      const currentdate = new Date(); 
+      const datetime = currentdate.getFullYear() + "-"
+                  + (currentdate.getMonth()+1)  + "-"
+                  + currentdate.getDate() + " "
+                  + currentdate.getHours() + ":"
+                  + currentdate.getMinutes() + ":"
+                  + currentdate.getSeconds() + "."
+                  + currentdate.getMilliseconds()
+
+      console.log(chalk.cyan('strated date:'), datetime)
+
+      const result = await this.transcationer(query)
       res.status(200).json(result.data)
     })
 
