@@ -4,6 +4,7 @@ import cors from 'cors'
 import mssql from 'mssql'
 import chalk from 'chalk'
 import path from 'path'
+import bodyParser from 'body-parser'
 
 class App{
   public server: Server
@@ -31,6 +32,7 @@ class App{
 
     // CORS module to allow cross origin resource sharing
     router.use(cors())
+    router.use(bodyParser())
 
     router.get('/forms/:form', async (req: express.Request, res: express.Response) => {
       console.log(chalk.cyan(`---FORM ${req.params.form} requested---`))
@@ -55,9 +57,10 @@ class App{
       res.status(200).json(result.data)
     })
 
-    router.post('/forms/:forms', async (req: express.Request, res: express.Response) => {
-      console.log(chalk.cyan(`---FILLED_FORM inserts ${req.params.forms.length} requested---`))
-      const val = req.params.forms
+    router.post('/forms/', async (req: express.Request, res: express.Response) => {
+      console.log(chalk.cyan(`---FILLED_FORM inserts requested---`))
+      const val = req.body
+      console.log(val)
       let query = "DECLARE @FILLED_ID INT ";
       for (let f = 0; f < val.length; f++){
         query = query + "INSERT INTO FILLED_FORM (FORM_CODE, DATE_FILLED) " +
