@@ -60,7 +60,6 @@ class App{
     router.post('/forms/', async (req: express.Request, res: express.Response) => {
       console.log(chalk.cyan(`---FILLED_FORM inserts requested---`))
       const val = req.body
-      console.log(val)
       let query = "DECLARE @FILLED_ID INT ";
       for (let f = 0; f < val.length; f++){
         query = query + "INSERT INTO FILLED_FORM (FORM_CODE, DATE_FILLED) " +
